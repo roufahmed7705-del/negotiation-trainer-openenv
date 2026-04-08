@@ -1,0 +1,61 @@
+version: "1.0"
+environment:
+  id: negotiation-trainer-openenv
+  name: Negotiation Trainer
+  description: |
+    A real-world strategic negotiation training environment.
+    The agent acts as a professional negotiator handling salary discussions, 
+    vendor contracts, or client deals with incomplete information, 
+    multi-issue trade-offs, relationship building, and bluff detection.
+  author: Royal Ace
+  tags:
+    - negotiation
+    - business
+    - real-world
+    - multi-turn
+    - strategy
+
+  license: MIT
+  python_version: ">=3.10"
+  openenv_version: ">=0.2.0"
+
+tasks:
+  - id: basic_deal
+    name: Basic Deal Closing
+    difficulty: easy
+    description: Close a simple single-issue price negotiation quickly and professionally while maintaining good relationship.
+    expected_score_range: [0.65, 0.95]
+
+  - id: multi_issue
+    name: Multi-Issue Negotiation
+    difficulty: medium
+    description: Balance price, timeline, and extras while maximizing mutual value.
+    expected_score_range: [0.50, 0.85]
+
+  - id: bluff_handling
+    name: Bluff & Coalition Handling
+    difficulty: hard
+    description: Detect and handle bluffs or fake alternatives while securing the best deal without damaging long-term relationship.
+    expected_score_range: [0.35, 0.75]
+
+observation_space:
+  type: pydantic
+  model: Observation
+
+action_space:
+  type: pydantic
+  model: Action
+
+reward_space:
+  type: pydantic
+  model: Reward
+
+entrypoint:
+  module: env
+  class: NegotiationTrainerEnvironment
+
+metadata:
+  real_world_utility: |
+    Useful for training sales agents, HR negotiation tools, and startup fundraising bots.
+  novelty: |
+    Combines strategic depth with real professional negotiation skills.
